@@ -36,3 +36,31 @@ npm run build
 ```
 
 > You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+
+
+  "tailwindProduction": "NODE_ENV=production npx tailwindcss -i ./src/tailwind.css -o ./dist/tailwind.css --minify",
+    "build:tailwind": "postcss ./src/assets/css/tailwind.css -o static/assets/css/tailwindoutput.css",
+    "tailwind:watch": "cross-env TAILWIND_MODE=watch cross-env NODE_ENV=development postcss src/styles/tailwind.css -o src/styles/tailwind-output.css -w",
+    "tailwind:build": "cross-env TAILWIND_MODE=build cross-env NODE_ENV=production postcss src/styles/tailwind.css -o src/styles/tailwind-output.css",
+    "tailwindDev": "npx tailwindcss -i ./src/tailwind.css -o ./dist/tailwind.css",
+
+    "dev": "concurrently \"yarn run dev:only\" \"yarn run tailwind:watch\"",
+    "dev": "concurrently \"yarn dev:only\" \"yarn tailwind:watch\"",
+    "dev:only": "svelte-kit dev",
+    "build": "yarn run tailwind:build && yarn run build:only",
+    "build": "yarn tailwind:build && yarn build:only",
+    "build:only": "svelte-kit build"
+
+
+
+
+
+// https://tailwindcss.com/docs/preflight#disabling-preflight
+  corePlugins: {
+    preflight: false,
+   }
+
+
+
+   full config
+   https://tailwindcss.com/docs/configuration#scaffolding-the-entire-default-configuration
