@@ -5,6 +5,7 @@ import adapter from '@sveltejs/adapter-static';
 const config = {
 	kit: {
 		adapter: adapter({
+			// The directory to write prerendered pages to
 			pages: 'build',
 			assets: 'build',
 			fallback: 'app.html'

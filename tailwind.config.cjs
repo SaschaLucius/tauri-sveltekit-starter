@@ -969,8 +969,4 @@ module.exports = {
     zIndex: ['responsive', 'focus-within', 'focus'],
   },
   plugins: [],
-  // https://tailwindcss.com/docs/preflight#disabling-preflight
-  corePlugins: {
-    preflight: false,
-   }
 }
