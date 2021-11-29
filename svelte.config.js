@@ -1,25 +1,35 @@
-import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-static';
+import sveltePreprocess from 'svelte-preprocess';
+import staticAdapter from '@sveltejs/adapter-static';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: {
-		adapter: adapter({
-			// The directory to write prerendered pages to
-			pages: 'build',
-			assets: 'build',
-			fallback: 'app.html'
-		}),
-		ssr: false,
-		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte'
-	},
+    // Consult https://github.com/sveltejs/svelte-preprocess
+    // for more information about preprocessors
+	preprocess: sveltePreprocess({
+		// in auto-preprocessing mode, you can set postcss: true if postcss-load-config is installed and svelte-preprocess will look for a PostCSS config file in your project.
+        postcss: true
+    }),
 
-	preprocess: [
-		preprocess({
-			postcss: true
-		})
-	]
+    kit: {
+        adapter: staticAdapter({
+            // default options are shown
+            pages: 'build',
+            assets: 'build',
+			fallback: null
+        }),
+        // hydrate the <div id="svelte"> element in src/app.html
+        target: '#svelte',
+		files: {
+			template: 'src/app.html'
+		  },
+		  
+        ssr: false,
+        vite: {
+            ssr: {
+                noExternal: true,
+            }
+        }
+    }
 };
 
 export default config;

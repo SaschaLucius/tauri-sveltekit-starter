@@ -5,7 +5,7 @@
 		"dev": "npm run tauri dev",
 		"dev-debug": "RUST_DEBUG=1; npm run tauri dev",
 		"build": "npm run tauri build",
-		"build-debug": "npm run tauri build -- --debug",
+		"build-debug": "npm run tauri build -- --debug --verbose",
 		"svelte-dev": "svelte-kit dev",
 		"svelte-build": "svelte-kit build",
 		"preview": "svelte-kit preview",
@@ -28,7 +28,6 @@
 		"postcss-load-config": "^3.1.0",
 		"svelte-preprocess": "^4.9.8",
 		"autoprefixer": "^10.4.0",
-		"cssnano": "^5.0.10",
 		"tailwindcss": "^2.2.19"
 	},
 	"type": "module",
